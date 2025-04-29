@@ -5,8 +5,25 @@ import { Link } from "react-router-dom"
 import axios from "axios"
 
 function Home() {
-  const [questions, setQuestions] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [questions, setQuestions] = useState([
+    {
+      _id: "1",
+      title: "How to use React Router?",
+      snippet: "I am new to React Router. Can someone explain how to use it?",
+      tags: ["React", "Router", "Beginner"],
+      user: "John Doe",
+      time: "2025-04-29T12:00:00Z",
+    },
+    {
+      _id: "2",
+      title: "What is the best way to manage state in React?",
+      snippet: "I am confused between Redux and Context API. Any suggestions?",
+      tags: ["React", "State Management"],
+      user: "Jane Smith",
+      time: "2025-04-28T15:30:00Z",
+    },
+  ])
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   useEffect(() => {
@@ -33,10 +50,10 @@ function Home() {
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{ textAlign: "center" }}>
       <div className="home-header">
-        <h1 className="title" style={{textAlign:"center"}}>All Questions</h1>
-        <br/>
+        <h1 className="title">All Questions</h1>
+        <br />
         <Link to="/ask" className="ask-btn">
           Ask a Question
         </Link>
@@ -66,23 +83,23 @@ function Home() {
       )}
 
       {!loading && !error && questions.length > 0 && (
-        <ul className="question-list">
+        <ul className="question-list" style={{ listStyle: "none", padding: 0 }}>
           {questions.map((q) => (
-            <li key={q._id} className="question-item">
+            <li key={q._id} className="question-item" style={{ marginBottom: "20px" }}>
               <h3>
                 <Link to={`/question/${q._id}`}>{q.title}</Link>
               </h3>
               <p className="question-snippet">{q.snippet}</p>
               <div className="question-tags">
                 {q.tags.map((tag, index) => (
-                  <span key={index} className="tag">
+                  <span key={index} className="tag" style={{ marginRight: "5px", padding: "5px", background: "#f0f0f0", borderRadius: "5px" }}>
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="question-meta">
+              <div className="question-meta" style={{ fontSize: "0.9em", color: "#555" }}>
                 <span className="question-user">Asked by {q.user}</span>
-                <span className="question-time">on {formatDate(q.time)}</span>
+                <span className="question-time"> on {formatDate(q.time)}</span>
               </div>
             </li>
           ))}
