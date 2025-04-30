@@ -15,7 +15,7 @@ function AskQuestion() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
+
     if (!title.trim() || !snippet.trim() || !tags.trim()) {
       setError("Please fill in all fields");
       toast.error("Please fill in all fields");

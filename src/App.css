@@ -1,4 +1,4 @@
-/* General Styles */
+
 :root {
   --primary-color: #007bff;
   --text-light: #6c757d;
@@ -25,22 +25,22 @@ body {
   padding: 2rem;
 }
 
-/* Home page */
+
 .home-header {
   display: flex;
-  flex-direction: column;  /* Change to column layout */
+  flex-direction: column;
   justify-content: center;
-  align-items: center; /* Center items horizontally */
+  align-items: center; 
   margin-bottom: 2rem;
   text-align: center;
 }
 
 .home-header .title {
-  margin-bottom: 1rem; /* Adds space between title and button */
+  margin-bottom: 1rem; 
 }
 
 .ask-btn {
-  margin-top: 1rem; /* Adds margin on top of the button */
+  margin-top: 1rem; 
   padding: 0.75rem 1.5rem;
   background-color: var(--primary-color);
   color: #fff;

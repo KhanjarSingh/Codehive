@@ -23,7 +23,7 @@ export default function ContactPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
+
     setTimeout(() => {
       setIsSubmitting(false)
       setSubmitted(true)

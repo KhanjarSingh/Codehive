@@ -1,4 +1,4 @@
-/* Global Styles */
+
 *,
 *::before,
 *::after {
@@ -50,14 +50,14 @@ a:hover {
   color: var(--primary-hover);
 }
 
-/* Root Styling */
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0;
 }
 
-/* Container */
+
 .container {
   width: 100%;
   max-width: 1200px;
@@ -65,7 +65,7 @@ a:hover {
   padding: 0 1rem;
 }
 
-/* Header and Footer */
+
 header {
   background-color: var(--bg-card);
   box-shadow: var(--shadow);
@@ -133,7 +133,7 @@ footer {
   gap: 1.5rem;
 }
 
-/* Form Styling */
+
 input,
 textarea {
   width: 100%;
@@ -172,7 +172,7 @@ button:focus {
   box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.4);
 }
 
-/* Card Styling */
+
 .card {
   background-color: var(--bg-card);
   border-radius: var(--radius);
@@ -186,7 +186,7 @@ button:focus {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Question List */
+
 .question-list {
   margin-top: 2rem;
 }
@@ -210,7 +210,7 @@ button:focus {
   margin-bottom: 0.5rem;
 }
 
-/* Tags */
+
 .tag {
   display: inline-block;
   background-color: rgba(74, 111, 165, 0.1);
@@ -222,7 +222,7 @@ button:focus {
   margin-bottom: 0.5rem;
 }
 
-/* Buttons */
+
 .primary-btn {
   background-color: var(--primary-color);
   color: white;
@@ -244,7 +244,7 @@ button:focus {
   color: white;
 }
 
-/* Ask Question Button */
+
 .ask-btn {
   background-color: var(--secondary-color);
   color: white;
@@ -260,7 +260,7 @@ button:focus {
   color: white;
 }
 
-/* Form Styling */
+
 .ask-question-form {
   max-width: 800px;
   margin: 0 auto;
@@ -303,7 +303,7 @@ button:focus {
   background-color: var(--secondary-hover);
 }
 
-/* Page Title */
+
 .title {
   font-size: 2rem;
   color: var(--text-color);
@@ -313,7 +313,7 @@ button:focus {
   display: inline-block;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;

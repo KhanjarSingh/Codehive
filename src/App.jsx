@@ -1,4 +1,4 @@
-// App.jsx or a global layout file
+
 import "react-hot-toast/dist/index.css";
 import { Toaster } from "react-hot-toast";
 
