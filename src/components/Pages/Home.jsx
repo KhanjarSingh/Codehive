@@ -1,112 +1,129 @@
-"use client"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import axios from "axios"
 
-function Home() {
-  const [questions, setQuestions] = useState([
-    {
-      _id: "1",
-      title: "How to use React Router?",
-      snippet: "I am new to React Router. Can someone explain how to use it?",
-      tags: ["React", "Router", "Beginner"],
-      user: "John Doe",
-      time: "2025-04-29T12:00:00Z",
-    },
-    {
-      _id: "2",
-      title: "What is the best way to manage state in React?",
-      snippet: "I am confused between Redux and Context API. Any suggestions?",
-      tags: ["React", "State Management"],
-      user: "Jane Smith",
-      time: "2025-04-28T15:30:00Z",
-    },
-  ])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+
+
+const Home = () => {
+  const [questions, setQuestions] = useState([]);
+  const [allQuestions, setAllQuestions] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        setLoading(true)
-        const res = await axios.get("http://localhost:3000/questions")
-        setQuestions(res.data)
-        setLoading(false)
+        setLoading(true);
+        const res = await axios.get("http://localhost:3000/questions");
+        setAllQuestions(res.data);
+        setQuestions(res.data);
+        setLoading(false);
       } catch (err) {
-        console.error("Error fetching questions:", err)
-        setError("Failed to load questions. Please try again.")
-        setLoading(false)
+        setError("Failed to fetch questions.");
+        console.log(err)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchQuestions()
-  }, [])
+    fetchQuestions();
+  }, []);
 
-  // Format date to readable format
-  const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "short", day: "numeric" }
-    return new Date(dateString).toLocaleDateString(undefined, options)
-  }
+  const handleSearch = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+
+    const filtered = allQuestions.filter((q) =>
+      q.title.toLowerCase().includes(term.toLowerCase()) ||
+      q.snippet.toLowerCase().includes(term.toLowerCase()) ||
+      q.tags.some((tag) => tag.toLowerCase().includes(term.toLowerCase()))
+    );
+
+    setQuestions(filtered);
+  };
 
   return (
-    <div className="container" style={{ textAlign: "center" }}>
-      <div className="home-header">
-        <h1 className="title">All Questions</h1>
-        <br />
-        <Link to="/ask" className="ask-btn">
-          Ask a Question
+    <div className="container" style={{ padding: "20px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+        <h1 style={{ fontSize: "2rem" }}>Community Questions</h1>
+        <Link to="/ask">
+          <button
+            style={{
+              padding: "10px 16px",
+              backgroundColor: "#007bff",
+              color: "#fff",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontWeight: "bold"
+            }}
+          >
+            + Ask Question
+          </button>
         </Link>
       </div>
 
-      {loading && (
-        <div className="loading">
-          <div className="spinner"></div>
-          <p>Loading questions...</p>
-        </div>
-      )}
+      <input
+        type="text"
+        placeholder="Search questions..."
+        value={searchTerm}
+        onChange={handleSearch}
+        style={{
+          padding: "10px",
+          width: "100%",
+          maxWidth: "400px",
+          marginBottom: "20px",
+          border: "1px solid #ccc",
+          borderRadius: "4px"
+        }}
+      />
 
-      {error && (
-        <div className="error-message">
-          <p>{error}</p>
-        </div>
-      )}
-
-      {!loading && !error && questions.length === 0 && (
-        <div className="empty-state">
-          <h3>No questions available yet.</h3>
-          <p>Be the first to ask a question!</p>
-          <Link to="/ask" className="ask-btn">
-            Ask a Question
-          </Link>
-        </div>
-      )}
-
-      {!loading && !error && questions.length > 0 && (
-        <ul className="question-list" style={{ listStyle: "none", padding: 0 }}>
-          {questions.map((q) => (
-            <li key={q._id} className="question-item" style={{ marginBottom: "20px" }}>
-              <h3>
-                <Link to={`/question/${q._id}`}>{q.title}</Link>
-              </h3>
-              <p className="question-snippet">{q.snippet}</p>
-              <div className="question-tags">
-                {q.tags.map((tag, index) => (
-                  <span key={index} className="tag" style={{ marginRight: "5px", padding: "5px", background: "#f0f0f0", borderRadius: "5px" }}>
+      {loading ? (
+        <p>Loading questions...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : questions.length === 0 ? (
+        <p>No questions found.</p>
+      ) : (
+        <ul style={{ listStyle: "none", padding: 0 }}>
+          {questions.map((question) => (
+            <li
+              key={question.id}
+              style={{
+                marginBottom: "20px",
+                padding: "15px",
+                border: "1px solid #ddd",
+                borderRadius: "6px",
+                backgroundColor: "#f9f9f9"
+              }}
+            >
+              <Link to={`/question/${question.id}`} style={{ textDecoration: "none", color: "#333" }}>
+                <h3 style={{ marginBottom: "5px" }}>{question.title}</h3>
+              </Link>
+              <p style={{ marginBottom: "8px" }}>{question.snippet}</p>
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                {question.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    style={{
+                      backgroundColor: "#e0e0e0",
+                      borderRadius: "4px",
+                      padding: "4px 8px",
+                      fontSize: "0.9rem"
+                    }}
+                  >
                     {tag}
                   </span>
                 ))}
-              </div>
-              <div className="question-meta" style={{ fontSize: "0.9em", color: "#555" }}>
-                <span className="question-user">Asked by {q.user}</span>
-                <span className="question-time"> on {formatDate(q.time)}</span>
               </div>
             </li>
           ))}
         </ul>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

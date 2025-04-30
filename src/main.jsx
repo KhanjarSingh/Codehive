@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "ask", element: <AskQuestion /> },
       { path: "contact", element: <ContactPage /> },
-      { path: "question/:id", element: <SingleQuestion /> },
+      { path: "question/:questionId", element: <SingleQuestion /> },
     ],
   },
 ])
