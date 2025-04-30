@@ -97,10 +97,11 @@ const Home = () => {
                 border: "1px solid #ddd",
                 borderRadius: "6px",
                 backgroundColor: "#f9f9f9"
+
               }}
             >
-              <Link to={`/question/${question.id}`} style={{ textDecoration: "none", color: "#333" }}>
-                <h3 style={{ marginBottom: "5px" }}>{question.title}</h3>
+              <Link to={`/question/${question.id}`} style={{ textDecoration: "none", color: "orange" }}>
+                <h3 style={{ marginBottom: "5px" ,}}>{question.title}</h3>
               </Link>
               <p style={{ marginBottom: "8px" }}>{question.snippet}</p>
               <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
