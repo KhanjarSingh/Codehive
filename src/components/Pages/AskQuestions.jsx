@@ -57,7 +57,7 @@ function AskQuestion() {
           color: "#007bff",
         }}
       >
-        Ask a New Question
+        Post a New Question & Spark Answers
       </h1>
       <Toaster position="top-right" reverseOrder={false} />
       {error && (
@@ -121,13 +121,13 @@ function AskQuestion() {
               htmlFor="snippet"
               style={{ fontWeight: "bold", display: "block", marginBottom: "8px" }}
             >
-              Question Details:
+              Solution to the query:
             </label>
             <textarea
               id="snippet"
               value={snippet}
               onChange={(e) => setSnippet(e.target.value)}
-              placeholder="Provide all the details someone would need to answer your question..."
+              placeholder="Give a detailed and awesome answer to the question above!"
               rows="10"
               className="input-field"
               style={{
@@ -139,7 +139,7 @@ function AskQuestion() {
               required
             />
             <small style={{ color: "#666", marginTop: "5px", display: "block" }}>
-              Include all necessary information for others to understand your question
+              Include all necessary information for others to understand your Answer
             </small>
           </div>
 

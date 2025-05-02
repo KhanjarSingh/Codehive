@@ -100,7 +100,7 @@ const Home = () => {
 
               }}
             >
-              <Link to={`/question/${question.id}`} style={{ textDecoration: "none", color: "orange" }}>
+              <Link style={{ textDecoration: "none", color: "orange" }}>
                 <h3 style={{ marginBottom: "5px" ,}}>{question.title}</h3>
               </Link>
               <p style={{ marginBottom: "8px" }}>{question.snippet}</p>
