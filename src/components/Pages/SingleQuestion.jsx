@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const SingleQuestion = () => {
-  const { questionId } = useParams(); // This must match your route
+  const { questionId } = useParams(); 
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
