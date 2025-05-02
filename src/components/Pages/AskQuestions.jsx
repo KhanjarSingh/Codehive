@@ -34,7 +34,7 @@ function AskQuestion() {
         time: new Date().toISOString(),
       };
 
-      await axios.post("http://localhost:3000/questions", newQuestion);
+      await axios.post("https://backend-for-codehive.onrender.com/questions", newQuestion);
       alert("Question submitted successfully!");
       navigate("/");
     } catch (err) {

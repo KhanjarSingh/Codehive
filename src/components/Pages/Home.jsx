@@ -17,7 +17,7 @@ const Home = () => {
     const fetchQuestions = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:3000/questions");
+        const res = await axios.get("https://backend-for-codehive.onrender.com/questions");
         setAllQuestions(res.data);
         setQuestions(res.data);
         setLoading(false);
