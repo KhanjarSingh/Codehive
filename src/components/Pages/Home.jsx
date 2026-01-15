@@ -83,12 +83,12 @@ const Home = () => {
 
       {!loading && <Stats totalQuestions={allQuestions.length} totalAnswers={totalAnswers} totalViews={totalViews} />}
 
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px", flexWrap: "wrap", alignItems: "stretch" }}>
+      <div style={{ display: "flex", gap: "10px", marginBottom: "20px", flexWrap: "wrap" }}>
         <input type="text" placeholder="Search questions..." value={searchTerm} onChange={handleSearch}
-          style={{ flex: 1, minWidth: "250px", padding: "10px", border: "1px solid #ccc", borderRadius: "6px", fontSize: "1rem" }} />
+          style={{ flex: 1, minWidth: "250px", padding: "12px 15px", border: "1px solid #ccc", borderRadius: "6px", fontSize: "1rem", height: "44px", boxSizing: "border-box" }} />
         
         <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}
-          style={{ padding: "10px 15px", border: "1px solid #ccc", borderRadius: "6px", cursor: "pointer", fontSize: "1rem", backgroundColor: "#fff", minWidth: "150px" }}>
+          style={{ padding: "12px 15px", border: "1px solid #ccc", borderRadius: "6px", cursor: "pointer", fontSize: "1rem", backgroundColor: "#fff", minWidth: "150px", height: "44px", boxSizing: "border-box" }}>
           <option value="newest">Newest</option>
           <option value="popular">Most Popular</option>
           <option value="views">Most Viewed</option>

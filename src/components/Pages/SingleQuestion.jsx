@@ -10,6 +10,7 @@ const SingleQuestion = () => {
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
   const [answerText, setAnswerText] = useState("");
+  const [answerUserName, setAnswerUserName] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -53,16 +54,15 @@ const SingleQuestion = () => {
       return;
     }
 
-    const userName = prompt("Enter your name (or leave blank for Anonymous):");
-
     try {
       setSubmitting(true);
       await axios.post(`${API_BASE_URL}/questions/${questionId}/answers`, {
         text: answerText,
-        user: userName?.trim() || "Anonymous"
+        name: answerUserName.trim() || "Anonymous"
       });
       toast.success("Answer posted successfully!");
       setAnswerText("");
+      setAnswerUserName("");
       fetchQuestion();
     } catch (err) {
       toast.error("Failed to post answer");
@@ -97,7 +97,7 @@ const SingleQuestion = () => {
   return (
     <div style={{ padding: "20px", maxWidth: "1000px", margin: "0 auto" }}>
       <Toaster position="top-right" />
-      
+
       <Link to="/" style={{ color: "#007bff", textDecoration: "none", marginBottom: "20px", display: "inline-block" }}>
         ← Back to questions
       </Link>
@@ -121,7 +121,7 @@ const SingleQuestion = () => {
 
         <div style={{ flex: 1 }}>
           <h1 style={{ fontSize: "2rem", marginBottom: "15px", color: "#333" }}>{question.title}</h1>
-          
+
           <div style={{ display: "flex", gap: "20px", marginBottom: "20px", fontSize: "0.9rem", color: "#666" }}>
             <span style={{ display: "flex", alignItems: "center", gap: "5px" }}>
               <Clock size={16} /> Asked {formatTime(question.time)}
@@ -178,7 +178,7 @@ const SingleQuestion = () => {
               <div style={{ flex: 1 }}>
                 <p style={{ lineHeight: "1.8", whiteSpace: "pre-wrap", marginBottom: "15px", color: "#333" }}>{answer.text}</p>
                 <div style={{ fontSize: "0.9rem", color: "#666" }}>
-                  Answered by <strong>{answer.user}</strong> on {formatTime(answer.time)}
+                  Answered by <strong>{answer.name}</strong> on {formatTime(answer.time)}
                 </div>
               </div>
             </div>
@@ -189,6 +189,13 @@ const SingleQuestion = () => {
       <div style={{ marginTop: "40px" }}>
         <h3 style={{ fontSize: "1.3rem", marginBottom: "15px" }}>Your Answer</h3>
         <form onSubmit={handleSubmitAnswer}>
+          <input
+            type="text"
+            value={answerUserName}
+            onChange={(e) => setAnswerUserName(e.target.value)}
+            placeholder="Your name (optional - leave blank for Anonymous)"
+            style={{ width: "100%", padding: "12px 15px", border: "1px solid #ccc", borderRadius: "6px", fontSize: "1rem", marginBottom: "10px" }}
+          />
           <textarea value={answerText} onChange={(e) => setAnswerText(e.target.value)}
             placeholder="Write your answer here..."
             rows="8"
