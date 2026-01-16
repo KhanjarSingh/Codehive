@@ -8,6 +8,13 @@
 
 Codehive is a developer-focused Q&A platform that simplifies the process of asking and answering programming questions. Unlike complex platforms, Codehive focuses on clean design, fast performance, and essential features that developers actually need.
 
+## 🔗 Backend Repository
+
+The backend for **CodeHive** is built separately and handles APIs, database operations, authentication, and core business logic.
+
+👉 **Backend GitHub Repository:**  
+https://github.com/KhanjarSingh/backend_for_Codehive
+
 ### Why Codehive is Different
 
 - **🎯 Developer-First Design**: Built specifically for programmers with coding-focused features
